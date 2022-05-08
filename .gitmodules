@@ -1,0 +1,6 @@
+[submodule "ud_ukrainian"]
+	path = ud_ukrainian
+	url = https://github.com/UniversalDependencies/UD_Ukrainian-IU.git
+[submodule "ud_tools"]
+	path = ud_tools
+	url = https://github.com/UniversalDependencies/tools.git
