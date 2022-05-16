@@ -73,6 +73,9 @@ def _traverse(root: TokenTree, depth: int, metadata: Optional[Metadata]) -> Tupl
     height = 0
 
     for node in root.children:
+        if node.token.get("upos") == "PUNCT":
+            continue
+
         data_node, node_subtree_depth = _traverse(node, depth + 1, metadata)
         height = max(height, node_subtree_depth + 1)
         children.append(data_node)
@@ -83,4 +86,5 @@ def _traverse(root: TokenTree, depth: int, metadata: Optional[Metadata]) -> Tupl
 
 
 def map_token_tree(root: TokenTree) -> ParseTree:
+    # not an actual map since it also filters out punctuation
     return _traverse(root, 0, None)[0]
