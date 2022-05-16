@@ -82,5 +82,5 @@ def _traverse(root: TokenTree, depth: int, metadata: Optional[Metadata]) -> Tupl
     return data_root, height
 
 
-def traverse(root: TokenTree) -> ParseTree:
+def map_token_tree(root: TokenTree) -> ParseTree:
     return _traverse(root, 0, None)[0]
