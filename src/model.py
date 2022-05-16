@@ -43,6 +43,7 @@ class Signature:
 
         node = str_node(self.node)
         child_nodes = ", ".join(str_node(child) for child in self.child_nodes)
+        # todo get rid of the self.depth + 1
         return f"{self.type.value}({node}, " \
                f"{child_nodes + ', ' if self.type is not SigType.N else ''}" \
                f"{self.height}, {self.depth + 1}, " \
@@ -74,9 +75,6 @@ def _traverse(root: TokenTree, depth: int, metadata: Optional[Metadata]) -> Tupl
     height = 0
 
     for node in root.children:
-        if node.token.get("upos") == "PUNCT":
-            continue
-
         data_node, node_subtree_depth = _traverse(node, depth + 1, metadata)
         height = max(height, node_subtree_depth + 1)
         children.append(data_node)
@@ -87,5 +85,4 @@ def _traverse(root: TokenTree, depth: int, metadata: Optional[Metadata]) -> Tupl
 
 
 def map_token_tree(root: TokenTree) -> ParseTree:
-    # not an actual map since it also filters out punctuation
     return _traverse(root, 0, None)[0]
