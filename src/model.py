@@ -45,7 +45,8 @@ class Signature:
         child_nodes = ", ".join(str_node(child) for child in self.child_nodes)
         return f"{self.type.value}({node}, " \
                f"{child_nodes + ', ' if self.type is not SigType.N else ''}" \
-               f"{self.depth}, {self.height}, " \
+               f"{self.height}, {self.depth + 1}, " \
+               f"{str(len(self.child_nodes)) + ', ' if self.type is SigType.W else ''}" \
                f"{self.subtree_type.value + ', ' if self.type is SigType.D else ''}" \
                f"{self.sentence_id})"
 
