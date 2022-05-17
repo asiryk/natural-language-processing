@@ -1,0 +1,27 @@
+%%% Шрифти
+\usepackage[english,ukrainian]{babel}
+\usepackage[skip=1.25mm]{parskip} % Абзацний відступ
+\usepackage{fontspec}
+    \setmainfont{Times New Roman}
+    \setsansfont{Arial}
+    \setmonofont{Fira Code}
+\usepackage{setspace} % Міжрядковий інтервал
+    \onehalfspacing % 1.5
+
+%%% Береги та колонтитули
+\usepackage{geometry}
+    \geometry{top=25mm}
+    \geometry{bottom=25mm}
+    \geometry{left=25mm}
+    \geometry{right=10mm}
+\usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \rfoot{\thepage}
+    \renewcommand{\headrulewidth}{0mm}
+    
+    
+%%% Математика
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{euscript}
+\usepackage{mathrsfs}
