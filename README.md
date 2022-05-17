@@ -30,3 +30,54 @@ The annotations for a **word line**:
 | MISC      | Any additional annotations                                                                         |
 
 Finally, a **blank line** after word lines is used to separate sentences.
+
+## How to run this code
+
+### Download and setup
+
+First, clone the repository and cd to it
+
+```shell
+git clone https://github.com/asiryk/natural-language-processing.git
+cd natural-language-processing
+
+# And clone git submodules (ud_tools and ud_ukrainian)
+git submodule update --init --recursive
+```
+
+Then you have to create Virtual Environment and activate it
+
+> Node: make sure you have Python version > 3.3
+
+```shell
+python3 -m venv venv 
+
+# And activate it
+
+# Mac/Linux
+source venv/bin/activate
+# Windows 
+venv/Scripts/activate.bat
+```
+
+Then install dependencies to just created venv
+
+```shell
+pip install -r requirements.txt
+```
+
+### Launch
+
+And now you are able to launch the main.py file
+
+```shell
+python -m src.main
+```
+
+### Test
+
+To run the test suites you have to
+
+```shell
+python -m unittest src.test
+```
