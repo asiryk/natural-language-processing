@@ -67,6 +67,15 @@ class ParseTree:
     def get_token(self, key: str):
         return self.token.get(key)
 
+    def to_list(self) -> List['ParseTree']:
+        def traverse(root: 'ParseTree', nodes: List['ParseTree']) -> List['ParseTree']:
+            nodes.append(root)
+            for node in root.children:
+                traverse(node, nodes)
+            return nodes
+
+        return traverse(self, [])
+
 
 def _traverse(root: TokenTree, depth: int, metadata: Optional[Metadata]) -> Tuple[ParseTree, int]:
     metadata = root.metadata if metadata is None else metadata
