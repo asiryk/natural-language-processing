@@ -33,12 +33,12 @@ class ModelTest(unittest.TestCase):
         tree = ModelTest.tree
 
         більше = str(tree.children[0].signature)
-        # побачене = str(tree.children[2].signature)
+        побачене = str(tree.children[2].signature)
         того = str(tree.children[3].children[3].signature)
 
-        self.assertEqual(більше, "d(advmod+ADV, advmod+ADV, 1, 2, d, 2hkl)")
-        # self.assertEqual(побачене, "d(obj+NOUN, conj+NOUN, cc, 2, 2, d, 2hkl)")  # todo don't cc?
-        self.assertEqual(того, "d(nmod+PRON, acl:relcl+VERB, 3, 3, w, 2hkl)")
+        self.assertEqual(більше, "d(advmod+ADV, advmod+ADV, 1, 1, d, 2hkl)")
+        self.assertEqual(побачене, "d(obj+NOUN, conj+NOUN, 2, 1, d, 2hkl)")
+        self.assertEqual(того, "d(nmod+PRON, acl:relcl+VERB, 3, 2, w, 2hkl)")
 
     def test_W_signatures_should_be_serialized_correctly(self):
         tree = ModelTest.tree
@@ -49,7 +49,7 @@ class ModelTest(unittest.TestCase):
         твір = str(tree.children[3].children[3].children[0].children[2].signature)
 
         self.assertEqual(відтворюю,
-                         "w(root+VERB, advmod+ADV, nsubj+PRON, obj+NOUN, conj+NOUN, punct+PUNCT, 5, 1, 5, 2hkl)")
-        self.assertEqual(композитором, "w(conj+NOUN, punct+PUNCT, cop+AUX, amod+ADJ, nmod+PRON, 4, 2, 4, 2hkl)")
-        self.assertEqual(втілиться, "w(acl:relcl+VERB, punct+PUNCT, mark+SCONJ, xcomp:sp+NOUN, 2, 4, 3, 2hkl)")
-        self.assertEqual(твір, "w(xcomp:sp+NOUN, mark+SCONJ, amod+ADJ, 1, 5, 2, 2hkl)")
+                         "w(root+VERB, advmod+ADV, nsubj+PRON, obj+NOUN, conj+NOUN, punct+PUNCT, 5, 0, 5, 2hkl)")
+        self.assertEqual(композитором, "w(conj+NOUN, punct+PUNCT, cop+AUX, amod+ADJ, nmod+PRON, 4, 1, 4, 2hkl)")
+        self.assertEqual(втілиться, "w(acl:relcl+VERB, punct+PUNCT, mark+SCONJ, xcomp:sp+NOUN, 2, 3, 3, 2hkl)")
+        self.assertEqual(твір, "w(xcomp:sp+NOUN, mark+SCONJ, amod+ADJ, 1, 4, 2, 2hkl)")
