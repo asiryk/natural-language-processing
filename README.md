@@ -47,7 +47,7 @@ git submodule update --init --recursive
 
 Then you have to create Virtual Environment and activate it
 
-> Node: make sure you have Python version > 3.3
+> Note: make sure you have Python version > 3.3
 
 ```shell
 python3 -m venv venv 
@@ -68,7 +68,7 @@ pip install -r requirements.txt
 
 ### Launch
 
-And now you are able to launch the main.py file
+And now you are able to launch the `main.py` file
 
 ```shell
 python -m src.main
@@ -76,7 +76,7 @@ python -m src.main
 
 ### Test
 
-To run the test suites you have to
+To run the test suites
 
 ```shell
 python -m unittest src.test
