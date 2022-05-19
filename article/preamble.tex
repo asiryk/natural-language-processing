@@ -1,5 +1,6 @@
 %%% Шрифти
 \usepackage[english,ukrainian]{babel}
+    \addto\captionsukrainian{\renewcommand{\figurename}{Рисунок}}
 \setlength\parindent{1.25cm} % Абзацний відступ
 \usepackage{fontspec}
     \setmainfont{Times New Roman}
@@ -7,6 +8,7 @@
     \setmonofont{Fira Code}
 \usepackage{setspace} % Міжрядковий інтервал
     \onehalfspacing % 1.5
+
 
 %%% Береги та колонтитули
 \usepackage{geometry}
@@ -19,9 +21,45 @@
     \fancyhf{}
     \rfoot{\thepage}
     \renewcommand{\headrulewidth}{0mm}
-    
-    
+
+
 %%% Математика
 \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
 \usepackage{euscript}
 \usepackage{mathrsfs}
+
+
+%%% Работа з картинками
+\usepackage{graphicx}
+\graphicspath{{images/}} % Шлях до директорій з картинками
+\setlength\fboxsep{3pt} % Відступ рамки \fbox{} від картинки
+\setlength\fboxrule{1pt} % Товщина ліній рамки \fbox{}
+\usepackage{wrapfig} % Обтікання картинок і таблиць текстом
+
+
+%%% Работа з таблицями
+\usepackage{array,tabularx,tabulary,booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+
+
+\usepackage{chngcntr} % Змінити лічильники на figure
+    \counterwithin{figure}{section}
+\usepackage[labelsep=endash]{caption}
+    \DeclareCaptionLabelSeparator{endash}{ --- }
+% \usepackage[labelsep=period,labelfont=bf,figurename={Хрень},figurewithin=none]{caption}
+\usepackage{indentfirst} % Відступ у першомі параграфі секції
+\usepackage[center]{titlesec} % Відцентрувати заголовки
+\usepackage{hyperref}
+    \hypersetup{
+        colorlinks=true,
+        citecolor=black,
+        filecolor=black,
+        linkcolor=black,
+        urlcolor=black,
+    }
+    
+
+%%% Команди
+\let\oldsection\section
+\renewcommand{\section}{\newpage\oldsection}
