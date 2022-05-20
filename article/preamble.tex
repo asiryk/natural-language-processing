@@ -1,5 +1,6 @@
 %%% Шрифти
 \usepackage[english,ukrainian]{babel}
+    \addto\captionsukrainian{\def\refname{СПИСОК ВИКОРИСТАНИХ ДЖЕРЕЛ}}
     \addto\captionsukrainian{\renewcommand{\figurename}{Рисунок}}
 \setlength\parindent{1.25cm} % Абзацний відступ
 \usepackage{fontspec}
@@ -45,9 +46,9 @@
 
 \usepackage{chngcntr} % Змінити лічильники на figure
     \counterwithin{figure}{section}
+    \counterwithin{table}{section}
 \usepackage[labelsep=endash]{caption}
     \DeclareCaptionLabelSeparator{endash}{ --- }
-% \usepackage[labelsep=period,labelfont=bf,figurename={Хрень},figurewithin=none]{caption}
 \usepackage{indentfirst} % Відступ у першомі параграфі секції
 \usepackage[center]{titlesec} % Відцентрувати заголовки
 \usepackage{hyperref}
@@ -58,7 +59,7 @@
         linkcolor=black,
         urlcolor=black,
     }
-    
+
 
 %%% Команди
 \let\oldsection\section
