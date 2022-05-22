@@ -1,0 +1,63 @@
+\section{КОРПУСИ ТЕКСТІВ UNIVERSAL DEPENDENCIES}
+
+% https://applied-language-technology.mooc.fi/html/notebooks/part_iii/02_universal_dependencies.html
+
+\subsection{Обробка природної мови}
+
+\subsection{Проблематика створення фреймворку для розмічення різних мов}
+
+укр - 122275 токенів 122324 слова 7060 реченнь
+
+Корпуси текстів Universal Dependencies або скорочено UD — це проект спільної розробки
+з відкритим кодом, який має дві основні цілі:
+
+\begin{enumerate}
+    \item розробити загальну структуру для опису граматичної структури різноманітних мов.
+    \cite{bib1}
+    \item створювати анотовані корпуси або \hyperlink{term0}{трібанки} для різних мов,
+    які застосовують цю структуру. \cite{bib2}
+\end{enumerate}
+
+Таким чином, проект має на меті забезпечити систематичний опис синтаксичних структур і
+морфологічних особливостей у різних мовах, що, у свою чергу, дозволяє проводити порівняння
+між мовами.
+
+Лінгвістичні корпуси, які містять анотації для синтаксичних відносин,
+часто називають банками дерев (трібанками), оскільки синтаксичні структури, як правило,
+представлені за допомогою деревоподібних структур. Таким чином, у цьому контексті трібанк —
+це просто набір синтаксичних дерев, які були послідовно анотовані за допомогою UD
+або якоїсь іншої структури.
+
+Структура UD є компромісом між кількома взаємопов'язаними критеріями, які наведені нижче:
+
+\begin{enumerate}
+    \item UD має бути придатним для комп'ютерного розбору з високою точністю
+    \item UD має бути задовільним для лінгвістичного аналізу окремих мов
+    \item UD повинен гарно виявляти структурні подібності між спорідненими мовами
+    \item UD має бути придатним для швидкого, послідовного анотування людиною-анотатором
+    \item UD має бути легко зрозумілим і використаним користувачами, які не знають мови
+\end{enumerate}
+
+\subsection{Репозиторій корпусу текстів Universal Dependencies українською}
+Як об'єкт для дослідження використовувася \cite{bib3}
+
+\subsection{Формат даних CoNLL-U}
+
+\begin{table}[h]
+\begin{tabular}{|l|l|}
+\hline
+  Field   & Description \\ \hline
+ID        & Index of the word in sequence \\ \hline
+FORM      & The form of a word or punctuation symbol \\ \hline
+LEMMA     & Lemma or the base form of a word \\ \hline
+UPOS      & Universal part-of-speech tag \\ \hline
+XPOS      & Language-specific part-of-speech tag \\ \hline
+FEATS     & Morphological features \\ \hline
+HEAD      & Syntactic head of the current word \\ \hline
+DEPREL    & Universal dependency relation to the \\ \hline
+DEPS      & Enhanced dependency relations \\ \hline
+MISC      & Any additional annotations \\ \hline
+\end{tabular}
+\caption{Table to test captions and labels.}
+\label{table:1}
+\end{table}
