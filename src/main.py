@@ -1,5 +1,6 @@
 from io import open
 
+import pandas
 from conllu import parse_tree_incr
 
 from src.model import map_token_tree
@@ -22,3 +23,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    print("pandas: ", pandas.__version__)
