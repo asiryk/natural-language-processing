@@ -11,6 +11,9 @@ from src.model import map_token_tree, SigType, Signature, ParseTree
 UK_DEV_PATH = "./ud_ukrainian/uk_iu-ud-dev.conllu"
 UK_TRAIN_PATH = "./ud_ukrainian/uk_iu-ud-dev.conllu"
 UK_TEST_PATH = "./ud_ukrainian/uk_iu-ud-dev.conllu"
+ES_DEV_PATH = "./ud_spanish/es_gsd-ud-dev.conllu"
+ES_TRAIN_PATH = "./ud_spanish/es_gsd-ud-train.conllu"
+ES_TEST_PATH = "./ud_spanish/es_gsd-ud-test.conllu"
 DIST_IMAGES_PATH = "./article/images/"
 
 
@@ -94,3 +97,4 @@ def process(treebank: List[ParseTree], lang: str):
 
 if __name__ == "__main__":
     process(get_token_trees(UK_DEV_PATH, UK_TRAIN_PATH, UK_TEST_PATH), "uk")
+    process(get_token_trees(ES_DEV_PATH, ES_TRAIN_PATH, ES_TEST_PATH), "es")

@@ -4,3 +4,6 @@
 [submodule "ud_tools"]
 	path = ud_tools
 	url = https://github.com/UniversalDependencies/tools.git
+[submodule "ud_spanish"]
+	path = ud_spanish
+	url = https://github.com/UniversalDependencies/UD_Spanish-GSD.git
