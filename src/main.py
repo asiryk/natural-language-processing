@@ -1,10 +1,24 @@
+import os
 from io import open
 
-import pandas
+import numpy as np
+import pandas as pd
 from conllu import parse_tree_incr
 
 from src.model import map_token_tree
-from src.paths import UK_TOKENS_PATH
+
+UK_TOKENS_PATH = "./ud_ukrainian/uk_iu-ud-dev.conllu"
+DIST_IMAGES_PATH = "./article/images/"
+
+
+def create_data() -> pd.Series:
+    ts = pd.Series(np.random.randn(1000), index=pd.date_range("1/1/2000", periods=1000))
+    return ts
+
+
+def save_chart(data: pd.Series, file_name: str = "figure.pdf"):
+    fig = data.hist().get_figure()
+    fig.savefig(os.path.join(DIST_IMAGES_PATH, file_name))
 
 
 def main():
@@ -22,5 +36,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
-    print("pandas: ", pandas.__version__)
+    # main()
+    # save_chart(create_data())
+    print(123)
