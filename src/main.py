@@ -6,10 +6,22 @@ import numpy as np
 import pandas as pd
 from conllu import parse_tree_incr
 
-from src.model import map_token_tree, SigType, Signature
+from src.model import map_token_tree, SigType, Signature, ParseTree
 
-UK_TOKENS_PATH = "./ud_ukrainian/uk_iu-ud-dev.conllu"
+UK_DEV_PATH = "./ud_ukrainian/uk_iu-ud-dev.conllu"
+UK_TRAIN_PATH = "./ud_ukrainian/uk_iu-ud-dev.conllu"
+UK_TEST_PATH = "./ud_ukrainian/uk_iu-ud-dev.conllu"
 DIST_IMAGES_PATH = "./article/images/"
+
+
+def get_token_trees(path_dev: str, path_train: str, path_test: str) -> List[ParseTree]:
+    def file_to_trees(file) -> List[ParseTree]: return list(map(map_token_tree, list(parse_tree_incr(file))))
+
+    dev = io.open(path_dev, "r", encoding="utf-8")
+    train = io.open(path_train, "r", encoding="utf-8")
+    test = io.open(path_test, "r", encoding="utf-8")
+
+    return [*file_to_trees(dev), *file_to_trees(train), *file_to_trees(test)]
 
 
 def save_chart(chart, file_name: str = "figure.pdf"):
@@ -38,10 +50,8 @@ def sig_sentence(sentence: List[Signature]):
     return f"w{types.get(SigType.W, 0)},d{types.get(SigType.D, 0)},n{types.get(SigType.N)}"
 
 
-def main():
-    data_file = io.open(UK_TOKENS_PATH, "r", encoding="utf-8")
-    token_trees = map(map_token_tree, list(parse_tree_incr(data_file)))
-    sentences = [[tree.signature for tree in sentence_tree.to_list()] for sentence_tree in token_trees]
+def process(treebank: List[ParseTree], lang: str):
+    sentences = [[tree.signature for tree in sentence_tree.to_list()] for sentence_tree in treebank]
     signatures = [signature for signatures in sentences for signature in signatures]
 
     deprel = [sig.node[0] for sig in signatures]
@@ -73,14 +83,14 @@ def main():
     chart_sent_d_w_n = freq_sent_d_w_n.plot(legend=False, xticks=[],
         xlabel=f"Розподіл сигнатур реченнь. Всього: {len(sent_d_w_n)}. Унікальних: {len(freq_sent_d_w_n)}")
 
-    save_chart(chart_deprel, "chart_deprel.pdf")
-    save_chart(chart_upos, "chart_upos.pdf")
-    save_chart(chart_deprel_upos, "chart_deprel_upos.pdf")
-    save_chart(chart_type_w, "chart_type_w.pdf")
-    save_chart(chart_type_d, "chart_type_d.pdf")
-    save_chart(chart_type_upos, "chart_type_upos.pdf")
-    save_chart(chart_sent_d_w_n, "chart_sent_d_w_n.pdf")
+    save_chart(chart_deprel, f"chart_{lang}_deprel.pdf")
+    save_chart(chart_upos, f"chart_{lang}_upos.pdf")
+    save_chart(chart_deprel_upos, f"chart_{lang}_deprel_upos.pdf")
+    save_chart(chart_type_w, f"chart_{lang}_type_w.pdf")
+    save_chart(chart_type_d, f"chart_{lang}_type_d.pdf")
+    save_chart(chart_type_upos, f"chart_{lang}_type_upos.pdf")
+    save_chart(chart_sent_d_w_n, f"chart_{lang}_sent_d_w_n.pdf")
 
 
 if __name__ == "__main__":
-    main()
+    process(get_token_trees(UK_DEV_PATH, UK_TRAIN_PATH, UK_TEST_PATH), "uk")
