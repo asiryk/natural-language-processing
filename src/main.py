@@ -41,7 +41,10 @@ def freq(items: List[str]) -> pd.DataFrame:
 
     values = np.array([v[0] for v in frequencies.values()])
     names = np.array([k for k in frequencies.keys()])
-    return pd.DataFrame(values, index=names).sort_values(by=0, ascending=False)
+    df = pd.DataFrame(values, index=names).sort_values(by=0, ascending=False)
+    df[1] = [df[0][0] / ind for ind in np.arange(1, len(frequencies) + 1)]
+    df.columns = ["Отриманий розподіл", "Розподіл Зіпфа"]
+    return df
 
 
 def sig_sentence(sentence: List[Signature]):
@@ -73,17 +76,17 @@ def process(treebank: List[ParseTree], lang: str):
     freq_type_upos = freq(type_upos)
     freq_sent_d_w_n = freq(sent_d_w_n)
 
-    chart_deprel = freq_deprel.plot(legend=False, kind="bar")
-    chart_upos = freq_upos.plot(legend=False, kind="bar")
-    chart_deprel_upos = freq_deprel_upos.plot(legend=False, xticks=[],
+    chart_deprel = freq_deprel.plot(kind="bar")
+    chart_upos = freq_upos.plot(kind="bar")
+    chart_deprel_upos = freq_deprel_upos.plot(xticks=[],
         xlabel=f"Розподіл deprel+upos. Всього: {len(deprel_upos)}. Унікальних: {len(freq_deprel_upos)}")
-    chart_type_w = freq_type_w.plot(legend=False, xticks=[],
+    chart_type_w = freq_type_w.plot(xticks=[],
         xlabel=f"Розподіл типу w. Всього: {len(type_w)}. Унікальних: {len(freq_type_w)}")
-    chart_type_d = freq_type_d.plot(legend=False, xticks=[],
+    chart_type_d = freq_type_d.plot(xticks=[],
         xlabel=f"Розподіл типу d. Всього: {len(type_d)}. Унікальних: {len(freq_type_d)}")
-    chart_type_upos = freq_type_upos.plot(legend=False, xticks=[],
+    chart_type_upos = freq_type_upos.plot(xticks=[], kind="bar",
         xlabel=f"Розподіл Тип + Частина мови. Всього: {len(type_upos)}. Унікальних: {len(freq_type_upos)}")
-    chart_sent_d_w_n = freq_sent_d_w_n.plot(legend=False, xticks=[],
+    chart_sent_d_w_n = freq_sent_d_w_n.plot(xticks=[],
         xlabel=f"Розподіл сигнатур реченнь. Всього: {len(sent_d_w_n)}. Унікальних: {len(freq_sent_d_w_n)}")
 
     save_chart(chart_deprel, f"chart_{lang}_deprel.pdf")
