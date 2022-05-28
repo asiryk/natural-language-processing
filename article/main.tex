@@ -4,14 +4,17 @@
 
 \begin{document}
 
-\include{article/title}
-\include{article/task}
-\include{article/structural/abstract}
+\pagestyle{empty}
+\includepdf[pages={1}]{article/pre-rendered/report_title.pdf}
+% \include{article/structural/abstract}
 
-\thispagestyle{empty}
+\addtocontents{toc}{\protect\pagestyle{empty}}
 \tableofcontents
+\newpage
 
-\include{article/structural/terminology}
+\pagestyle{fancy}
+\includepdf[pages={1}]{article/pre-rendered/report_plan.pdf}
+% \include{article/structural/terminology}
 \include{article/structural/introduction}
 \include{article/sections/section1}
 \include{article/sections/section2}
