@@ -8,11 +8,11 @@
 \includepdf[pages={1}]{article/pre-rendered/report_title.pdf}
 % \include{article/structural/abstract}
 
-\addtocontents{toc}{\protect\pagestyle{empty}}
 \tableofcontents
 \newpage
 
 \pagestyle{fancy}
+\addcontentsline{toc}{section}{ПЛАН ПРАКТИКИ}% comment on purpose
 \includepdf[pages={1}]{article/pre-rendered/report_plan.pdf}
 % \include{article/structural/terminology}
 \include{article/structural/introduction}
