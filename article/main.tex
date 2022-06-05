@@ -5,16 +5,14 @@
 \begin{document}
 
 \pagestyle{empty}
-\includepdf[pages={1}]{article/pre-rendered/report_title.pdf}
-% \include{article/structural/abstract}
+\includepdf[pages={1}]{article/pre-rendered/thesis_title.pdf}
+\includepdf[pages=-]{article/pre-rendered/thesis_task.pdf}
+\include{article/structural/abstract}
 
 \tableofcontents
 \newpage
 
 \pagestyle{fancy}
-\addcontentsline{toc}{section}{ПЛАН ПРАКТИКИ}% comment on purpose
-\includepdf[pages={1}]{article/pre-rendered/report_plan.pdf}
-% \include{article/structural/terminology}
 \include{article/structural/introduction}
 \include{article/sections/section1}
 \include{article/sections/section2}
@@ -23,5 +21,6 @@
 \include{article/sections/section5}
 \include{article/structural/conclusion}
 \include{article/structural/bibliography}
+\include{article/structural/appendix}
 
 \end{document}

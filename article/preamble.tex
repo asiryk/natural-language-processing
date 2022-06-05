@@ -1,6 +1,6 @@
 %%% Шрифти
 \usepackage[english,ukrainian]{babel}
-    \addto\captionsukrainian{\def\refname{СПИСОК ВИКОРИСТАНИХ ДЖЕРЕЛ}}
+    \addto\captionsukrainian{\def\refname{ПЕРЕЛІК ДЖЕРЕЛ ПОСИЛАННЯ}}
     \addto\captionsukrainian{\renewcommand{\figurename}{Рисунок}}
     \addto\captionsukrainian{\renewcommand{\contentsname}{ЗМІСТ}}
 \setlength\parindent{1.25cm} % Абзацний відступ
@@ -48,13 +48,17 @@
     \counterwithin{table}{section}
 \usepackage[labelsep=endash]{caption}
     \DeclareCaptionLabelSeparator{endash}{ --- }
+    \captionsetup[table]{margin={1.25cm,0pt} % the same as prindent
+        ,position=above,justification=raggedright, singlelinecheck=off}
 \usepackage{indentfirst} % Відступ у першомі параграфі секції
 \usepackage{titlesec} % Відцентрувати заголовки
     \titleformat*{\section}{\normalsize\bfseries\filcenter\Large\MakeUppercase}
-    \titlespacing*{\subsection}{\parindent}{*4}{*4}
+    \titlespacing*{\subsection}{\parindent}{*8}{*4}
 
 \usepackage{enumitem}
     \setenumerate[1]{label={\arabic*)}}
+    \setlist{labelindent=\parindent, leftmargin=*}
+    \setlist{noitemsep, topsep=0pt}
 \usepackage{float}
 \usepackage{multicol}
 \usepackage{pdfpages}
@@ -74,6 +78,23 @@
 
 \sloppy
 
-
 % \usepackage{enumitem} % remove list spacing
 %     \setlist{nolistsep}
+
+\usepackage{tocloft}
+    \tocloftpagestyle{empty}
+    \renewcommand{\cfttoctitlefont}{\Large\bfseries}
+    \renewcommand{\cfttoctitlefont}{\hspace{0.44\textwidth}\Large\bfseries}
+    \renewcommand{\cftsecfont}{\hspace{0pt}}
+    \renewcommand{\cftsecpagefont}{\mdseries}
+    \setlength{\cftbeforesecskip}{0pt}
+    \renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
+
+\usepackage{listings}
+\lstset{
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    tabsize=2,
+    literate={--}{{-{}-}}2
+}
+\usepackage{lastpage}
