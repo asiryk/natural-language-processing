@@ -1,5 +1,7 @@
 import io
 import os
+import re
+import sys
 from typing import List
 
 import numpy as np
@@ -98,6 +100,32 @@ def process(treebank: List[ParseTree], lang: str):
     save_chart(chart_sent_d_w_n, f"chart_{lang}_sent_d_w_n.pdf")
 
 
+def parse_cli_args():
+    args = filter(lambda txt: re.search(r"--\w+=.+", txt), sys.argv[1:])
+    keys = lambda txt: txt[2:txt.index('=')]
+    vals = lambda txt: txt[txt.index('=') + 1:]
+    return dict((keys(v), vals(v)) for v in args)
+
+
+def print_tree(tree):
+    print(tree.metadata.get("text"), "\n")
+    for node in tree.to_list():
+        print("{:25}{}".format(node.token.get("form"), node.signature))
+
+    print("-" * 100, "\n")
+
+
+def main():
+    uk_trees = get_token_trees(UK_DEV_PATH, UK_TRAIN_PATH, UK_TEST_PATH)
+    # es_trees = get_token_trees(ES_DEV_PATH, ES_TRAIN_PATH, ES_TEST_PATH)
+
+    args = parse_cli_args()
+    if args.get("text") and args.get("text").lower() == "true":
+        for tree in uk_trees:
+            print_tree(tree)
+    else:
+        process(uk_trees, "uk")
+
+
 if __name__ == "__main__":
-    process(get_token_trees(UK_DEV_PATH, UK_TRAIN_PATH, UK_TEST_PATH), "uk")
-    process(get_token_trees(ES_DEV_PATH, ES_TRAIN_PATH, ES_TEST_PATH), "es")
+    main()
