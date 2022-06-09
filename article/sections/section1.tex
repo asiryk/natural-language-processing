@@ -18,10 +18,7 @@
 інтуїтивно його розуміємо, базуючись на нашому попередньому досвіді, природних явищах, поведінкових
 шаблонах, тощо. Від цього контексту напряму залежить те, як ми інтерпритуємо те, чи інше речення.
 
-Із достатнім набором даних можливо натренувати модель, яка буде розуміти певні граматичні
-закономірності, але якщо розширити цей набір даних правилами і тонкощами мови --- це значно підвищить релевантність цієї моделі.
-
-\begin{wrapfigure}{r}{0.35\textwidth}
+\begin{figure}[H]
   \begin{center}
     \noindent $S \rightarrow T \mid U$ \\
     \noindent $T \rightarrow VaT \mid VaV \mid TaV$ \\
@@ -30,7 +27,10 @@
   \end{center}
   \caption{Контекстно-вільна граматика}
   \label{text:context_free_grammar}
-\end{wrapfigure}
+\end{figure}
+
+Із достатнім набором даних можливо натренувати модель, яка буде розуміти певні граматичні
+закономірності, але якщо розширити цей набір даних правилами і тонкощами мови --- це значно підвищить релевантність цієї моделі.
 
 Контекстно-вільна граматика (КВГ) --- це набір правил, які визначають те, як потрібно класифікувати,
 групувати та розміщувати мовні токени в ієрархічні граматичні структури. Символи, що
@@ -40,21 +40,9 @@
 \texttt{Іменник~$\rightarrow$~кіт~$\mid$~риба~$\mid$~курка~$\mid$~дорога}, можна зрозуміти
 що термінальними символами є \texttt{кіт, риба, курка, дорога}. У більш узагальненому
 вигляді контекстно-вільна граматика зображена на рисунку~\ref{text:context_free_grammar}.
+
 Якщо створити правильний набір правил, ми можемо використовувати КВГ для того, щоб парсити
 існуючі тексти, або навіть генерувати нові, такі, що задовольняють правилам нашої граматики.
-
-\begin{wrapfigure}{l}{0.5\textwidth}
-  \begin{flushleft}
-    \noindent Noun $\rightarrow$ Дідо $\mid$ Богдан $\mid$ полоні $\mid$ ... \\
-    \noindent Verb $\rightarrow$ був $\mid$ ...\\
-    \noindent Adjective $\rightarrow$ італійському $\mid$ ... \\
-    \noindent Adverb $\rightarrow$ тоді $\mid$ ... \\
-    \noindent Proposition $\rightarrow$ в $\mid$ ... \\
-    \noindent Nominal $\rightarrow$ Noun $\mid$ Nominal Noun \\
-  \end{flushleft}
-  \caption{Задана КВГ}
-  \label{text:cfg_uk}
-\end{wrapfigure}
 
 Оголосивши граматику~\ref{text:cfg_uk}, та просто застосовуючи її правила,
 ми можемо розібрати речення \texttt{Дідо Богдан був тоді в італійському полоні}.
@@ -62,26 +50,45 @@
 \texttt{[{\footnotesize Noun}Дідо] [{\footnotesize Noun}Богдан] 
 [{\footnotesize Verb}був] [{\footnotesize Adverb}тоді]
 [{\footnotesize Proposition}в] [{\footnotesize Adjective}італійському]
-[{\footnotesize Noun}полоні}]. Використавши останнє правило для Nominal, ми об'єднаємо
+[{\footnotesize Noun}полоні}]. 
+
+\begin{figure}[H]
+  \begin{center}
+    \noindent Noun $\rightarrow$ Дідо $\mid$ Богдан $\mid$ полоні $\mid$ ... \\
+    \noindent Verb $\rightarrow$ був $\mid$ ...\\
+    \noindent Adjective $\rightarrow$ італійському $\mid$ ... \\
+    \noindent Adverb $\rightarrow$ тоді $\mid$ ... \\
+    \noindent Proposition $\rightarrow$ в $\mid$ ... \\
+    \noindent Nominal $\rightarrow$ Noun $\mid$ Nominal Noun \\
+  \end{center}
+  \caption{Задана КВГ}
+  \label{text:cfg_uk}
+\end{figure}
+
+Використавши останнє правило для Nominal, ми об'єднаємо
 2 іменника в одну групу 
 \texttt{[{\footnotesize Nominal}[{\footnotesize Noun}Дідо][{\footnotesize Noun}Богдан]]
 [{\footnotesize Verb}був] [{\footnotesize Adverb}тоді] [{\footnotesize Proposition}в]
 [{\footnotesize Adjective}італійському] [{\footnotesize Noun}полоні}].
+
 Таким чином ми можемо отримати структуру, схожу на дерево. Дійсно, нотація з використанням
 квадратних дужок є лише скороченною формою запису
 абстрактного дерева розбору (parse tree), рисунок~\ref{text:parse_tree}.
 Отже, ми можемо зробити висновок, що абстрактне дерево розбору є результатом слідування
-правил із заданої контекстно-вільної граматики. Такі правила ми можемо використовувати не
+правил із заданої контекстно-вільної граматики. 
+
+Такі правила ми можемо використовувати не
 тільки для того, щоб парсити існуючі тексти, а й щоб генерувати нові. Наприклад, якщо
 просто вибирати випадкові термінальні символи, дуже рідко можна отримати якесь осмисленне
 речення, але додавши до такого підходу ймовірнісні методи, можна отримати речення, які
 несуть в собі більше сенсу.
 
-\begin{wrapfigure}{r}{0.3\textwidth}
- \includegraphics[width=\linewidth]{parse_tree.pdf} 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{parse_tree.pdf} 
   \caption{Приклад дерева розбору}
   \label{text:parse_tree}
-\end{wrapfigure}
+\end{figure}
 
 Використовуючи тільки КВГ, ми не вказуємо яким конкретно чином ми повинні генерувати
 абстрактне дерево розбору. Для деяких реченнь, змінивши порядок в яких застосовуються ці
