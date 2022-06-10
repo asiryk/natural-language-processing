@@ -68,29 +68,30 @@ Dependencies.
   \label{img:uk3}
 \end{figure}
 
-\begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=\linewidth]{chart_uk_type_d.pdf}
-  \end{center}
-  \caption{Розподіл піддерев токенів, що ростуть вглиб}
-  \label{img:uk4}
-\end{figure}
+% \begin{figure}[H]
+%   \begin{center}
+%     \includegraphics[width=\linewidth]{chart_uk_type_d.pdf}
+%   \end{center}
+%   \caption{Розподіл піддерев токенів, що ростуть вглиб}
+%   \label{img:uk4}
+% \end{figure}
 
-\begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=\linewidth]{chart_uk_type_upos.pdf}
-  \end{center}
-  \caption{Розподіл типу та універсальної частинин мови}
-  \label{img:uk5}
-\end{figure}
+% \begin{figure}[H]
+%   \begin{center}
+%     \includegraphics[width=\linewidth]{chart_uk_type_upos.pdf}
+%   \end{center}
+%   \caption{Розподіл типу та універсальної частинин мови}
+%   \label{img:uk5}
+% \end{figure}
 
-\begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=\linewidth]{chart_uk_sent_d_w_n.pdf}
-  \end{center}
-  \caption{Розподіл сигнатур речень}
-  \label{img:uk6}
-\end{figure}
+% \begin{figure}[H]
+%   \begin{center}
+%     \includegraphics[width=\linewidth]{chart_uk_sent_d_w_n.pdf}
+%   \end{center}
+%   \caption{Розподіл сигнатур речень}
+%   \label{img:uk6}
+% \end{figure}
+
 \end{multicols}
 
 \newpage
@@ -132,35 +133,79 @@ Dependencies.
   \label{img:es3}
 \end{figure}
 
-\begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=\linewidth]{chart_es_type_d.pdf}
-  \end{center}
-  \caption{Розподіл піддерев токенів, що ростуть вглиб}
-  \label{img:es4}
-\end{figure}
+% \begin{figure}[H]
+%   \begin{center}
+%     \includegraphics[width=\linewidth]{chart_es_type_d.pdf}
+%   \end{center}
+%   \caption{Розподіл піддерев токенів, що ростуть вглиб}
+%   \label{img:es4}
+% \end{figure}
 
-\begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=\linewidth]{chart_es_type_upos.pdf}
-  \end{center}
-  \caption{Розподіл типу та універсальної частинин мови}
-  \label{img:es5}
-\end{figure}
+% \begin{figure}[H]
+%   \begin{center}
+%     \includegraphics[width=\linewidth]{chart_es_type_upos.pdf}
+%   \end{center}
+%   \caption{Розподіл типу та універсальної частинин мови}
+%   \label{img:es5}
+% \end{figure}
 
-\begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=\linewidth]{article/images/chart_uk_sent_d_w_n.pdf}
-  \end{center}
-  \caption{Розподіл сигнатур речень}
-  \label{img:es6}
-\end{figure}
+% \begin{figure}[H]
+%   \begin{center}
+%     \includegraphics[width=\linewidth]{chart_uk_sent_d_w_n.pdf}
+%   \end{center}
+%   \caption{Розподіл сигнатур речень}
+%   \label{img:es6}
+% \end{figure}
 \end{multicols}
+
+\newpage
+\subsection{Розбір суфіксних дерев}
+Для знаходження спільних характеристик дуже важливо мати
+швидкий алгоритм пошуку по всім реченням корпусу. З цією метою,
+всі речення трансформуються та подаються у вигляді суфікснних дерев, за 
+алгоритмом Укконена. Таким чином операції з пошуку будуть здійснюватися за лінійнинй час.
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[width=\linewidth]{suffix_tree.pdf}
+  \end{center}
+  \caption{Суфікснне дерево}
+  \label{img:suffix_tree}
+\end{figure}
+
+На рисунку \ref{img:suffix_tree} зображено приклад такого суфіксного дерева,
+де видно, що суфікси є підрядками речень та подаються у вигляді індексів
+вершин цього дерева.
+
+Завдяки тому, що всі речення постають у вигляді суфіксного дерева, дуже просто
+та швидко можна знаходити найбільш повторювані рядки, найдовші спільні
+підрядки, найдовші паліндроми. Що значно розширює способи застосування
+кінцевої програми.
+
+Застосувавши описаний підхід до корпусу, перед цим подавши усі слова кожного речення у вигляді універсальної частини мови, ми можемо знайти найдовші такі
+підрядки та частоту їх зустрічання. Наприклад, для граматики
+\texttt{NOUN~NOUN~NOUN~PROPN~ADP~ADJ~NOUN~ADJ~NOUN~NOUN~NUM~PUNCT} ми можемо
+знайти відповідну грань у створеному суфіксному дереві - \texttt{BBBKHLBLBBND}.
+Співставивши це із підрядками речень отримаємо результат: частота підрядків
+із такою граматикою дорівнює трьом, а самі підрядки будуть виглядати наступним
+чином: 
+\begin{enumerate}
+    \item \texttt{Міністерства охорони здоров’я України від 28 вересня 2012 року
+    №~751~"}
+    \item \texttt{постанови Кабінету Міністрів України від 25 березня 2009 року
+    №~333~"}
+    \item \texttt{постановою Кабінету Міністрів України від 25 березня 2009 року 
+    №~333~"}
+\end{enumerate}
+
+Таким чином можна шукати спільні підрядки кожного речення корпусу, які
+задовольняють певній граматиці. 
+
 
 \subsection*{Висновки до розділу \arabic{section}}
 \addcontentsline{toc}{subsection}{Висновки до розділу \arabic{section}}
 Проаналізувавши отримані графіки, що зображено на рисунках
-\ref{img:uk0}~\nobreakdash--~\ref{img:es6},
+\ref{img:uk0}~\nobreakdash--~\ref{img:es3},
 ми можемо дійти до висновку, що тренди, які
 спостерігаються в україномовному корпусі майже так само прослідковуються в
 іспаномовному корпусі, що підтверджує зазначену мету проекту Universal Dependencies.
@@ -168,4 +213,5 @@ Dependencies.
 У цьому розділі було продемонстровано статистичні закономірності у двох
 корпусах UD. Загалом проаналізовано 2016 дерев в україномовному та 16013 дерев
 в іспаномовному корпусах. Що в одному, що в іншому виявлено 17 унікальних
-універсальних частин мови.
+універсальних частин мови. А також було розібрано суфіксні дерева та проведено
+пошук підрядів за заданою граматикою.
