@@ -13,7 +13,8 @@ Dependencies.
 Завдяки кінцевому програмному продукту було проаналізовано 7060 речень 
 та, загалом, 122000 токенів, які мають синтаксовий шар.
 Для аналізу використовувалися різні тексти, для того, щоб охопити максимальну
-пвдмножину всієї мови: статті, новини, дописи, підручники, листування, казки, худпроза — і сучасні, і класичні~\cite{bib12}.
+пвдмножину всієї мови: статті, новини, дописи, підручники, листування, казки,
+худпроза — і сучасні, і класичні~\cite{bib12}.
 
 Результатом аналізу корпусу української мови стали наступні законормрності,
 які відображені у графіках.
@@ -37,7 +38,8 @@ Dependencies.
 
 На відміну від універсальних частин мови, порівнявши сигнатуру, де за основу
 взяті і універсальна частина мови і її синтаксичне відношення, отримаємо
-розподіл, який майже точно накладається на розподіл Зіпфа, рисунок~\ref{img:uk_deprel_upos}. Також на цьому рисунку можемо побачити, що 
+розподіл, який майже точно накладається на розподіл Зіпфа,
+рисунок~\ref{img:uk_deprel_upos}. Також на цьому рисунку можемо побачити, що 
 всього таких сигнатур у корпусі 37722, при чому унікальних
 тільки 178.
 
@@ -67,30 +69,6 @@ Dependencies.
   \caption{Розподіл піддерев токенів, що ростуть вшир}
   \label{img:uk3}
 \end{figure}
-
-% \begin{figure}[H]
-%   \begin{center}
-%     \includegraphics[width=\linewidth]{chart_uk_type_d.pdf}
-%   \end{center}
-%   \caption{Розподіл піддерев токенів, що ростуть вглиб}
-%   \label{img:uk4}
-% \end{figure}
-
-% \begin{figure}[H]
-%   \begin{center}
-%     \includegraphics[width=\linewidth]{chart_uk_type_upos.pdf}
-%   \end{center}
-%   \caption{Розподіл типу та універсальної частинин мови}
-%   \label{img:uk5}
-% \end{figure}
-
-% \begin{figure}[H]
-%   \begin{center}
-%     \includegraphics[width=\linewidth]{chart_uk_sent_d_w_n.pdf}
-%   \end{center}
-%   \caption{Розподіл сигнатур речень}
-%   \label{img:uk6}
-% \end{figure}
 
 \end{multicols}
 
@@ -133,29 +111,6 @@ Dependencies.
   \label{img:es3}
 \end{figure}
 
-% \begin{figure}[H]
-%   \begin{center}
-%     \includegraphics[width=\linewidth]{chart_es_type_d.pdf}
-%   \end{center}
-%   \caption{Розподіл піддерев токенів, що ростуть вглиб}
-%   \label{img:es4}
-% \end{figure}
-
-% \begin{figure}[H]
-%   \begin{center}
-%     \includegraphics[width=\linewidth]{chart_es_type_upos.pdf}
-%   \end{center}
-%   \caption{Розподіл типу та універсальної частинин мови}
-%   \label{img:es5}
-% \end{figure}
-
-% \begin{figure}[H]
-%   \begin{center}
-%     \includegraphics[width=\linewidth]{chart_uk_sent_d_w_n.pdf}
-%   \end{center}
-%   \caption{Розподіл сигнатур речень}
-%   \label{img:es6}
-% \end{figure}
 \end{multicols}
 
 \newpage
@@ -182,7 +137,8 @@ Dependencies.
 підрядки, найдовші паліндроми. Що значно розширює способи застосування
 кінцевої програми.
 
-Застосувавши описаний підхід до корпусу, перед цим подавши усі слова кожного речення у вигляді універсальної частини мови, ми можемо знайти найдовші такі
+Застосувавши описаний підхід до корпусу, перед цим подавши усі слова кожного
+речення у вигляді універсальної частини мови, ми можемо знайти найдовші такі
 підрядки та частоту їх зустрічання. Наприклад, для граматики
 \texttt{NOUN~NOUN~NOUN~PROPN~ADP~ADJ~NOUN~ADJ~NOUN~NOUN~NUM~PUNCT} ми можемо
 знайти відповідну грань у створеному суфіксному дереві - \texttt{BBBKHLBLBBND}.
