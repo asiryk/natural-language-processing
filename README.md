@@ -81,3 +81,10 @@ To run the test suites
 ```shell
 python -m unittest src.test
 ```
+
+## LaTeX
+
+The source folder for LaTeX files is `./article`, but the root of the compiler
+should be in `./`. To compile the thesis, use XeLaTeX compiler, and make
+sure you have all the used fonts installed, i.e. Fira Code, etc.
+Originally it were comiled using [Overleaf](https://www.overleaf.com/).
